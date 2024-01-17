@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: micabrer <micabrer@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:17:57 by micabrer          #+#    #+#             */
-/*   Updated: 2024/01/17 15:11:33 by micabrer         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:49:26 by micabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
+
+static void	confirm_signal(int signal)
+{
+	if (signal == SIGUSR2)
+		ft_printf("signal received\n");
+	else
+		printf("signal not received\n");
+}
 
 void	send_bits(int pid, char i)
 {
@@ -30,8 +38,8 @@ void	send_bits(int pid, char i)
 
 int	main(int argc, char **argv)
 {
-	int	pid;
-	int	i;
+	pid_t	pid;
+	int		i;
 
 	i = 0;
 	if (argc == 3)
@@ -39,6 +47,7 @@ int	main(int argc, char **argv)
 		pid = ft_atoi((char *)argv[1]);
 		while (argv[2][i] != '\0')
 		{
+			signal(SIGUSR2, confirm_signal);
 			send_bits(pid, (char)argv[2][i]);
 			i++;
 		}
