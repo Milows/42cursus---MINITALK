@@ -6,7 +6,7 @@
 /*   By: micabrer <micabrer@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:17:59 by micabrer          #+#    #+#             */
-/*   Updated: 2024/01/17 18:23:22 by micabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:11:21 by micabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void	signal_handler(int signal, siginfo_t *info, void *context)
 		ft_printf("%c", i);
 		bit = 0;
 		i = 0;
-		kill(info->si_pid, SIGUSR2);
+		if ((kill(info->si_pid, SIGUSR2)) != 0)
+		{
+			printf("\nError al enviar la señal al cliente");
+			exit(EXIT_FAILURE);
+		}
 	}
 }
 
@@ -39,7 +43,7 @@ int	main(int argc, char **argv)
 	if (argc != 1)
 	{
 		ft_printf("Try: ./server\n");
-		return (0);
+		exit(EXIT_FAILURE);
 	}
 	pid = getpid();
 	ft_printf("PID -> %d\n", pid);
@@ -48,8 +52,8 @@ int	main(int argc, char **argv)
 	sig.sa_flags = SA_SIGINFO;
 	while (argc == 1)
 	{
-		sigaction(SIGUSR1, &sig, NULL);
-		sigaction(SIGUSR2, &sig, NULL);
+		sigaction(SIGUSR1, &sig, 0);
+		sigaction(SIGUSR2, &sig, 0);
 		pause ();
 	}
 	return (0);

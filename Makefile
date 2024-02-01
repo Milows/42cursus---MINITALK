@@ -31,6 +31,8 @@ client_bonus: client_bonus.o $(LIBFT)
 		$(CC) $(GFLAGS) client_bonus.c $(LIBFT) -o $@
 		@echo "Client_bonus created"
 
+%.o: %.c 
+		$(CC) $(GFLAGS) -c $< -o $@
 
 clean: 
 		@rm -rf $(OBJS) $(OBJS_BNS)
@@ -40,8 +42,8 @@ clean:
 fclean: clean
 		@make fclean -C libft -s
 		@rm -rf server client client_bonus server_bonus
-		@echo "Ejecutables server y client eliminados"
+		@echo "Ejecutables eliminados"
 
 re: fclean all
 
-.PHONY: server clean fclean all re
+.PHONY: clean fclean all re

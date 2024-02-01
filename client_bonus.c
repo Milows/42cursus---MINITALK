@@ -6,7 +6,7 @@
 /*   By: micabrer <micabrer@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:17:57 by micabrer          #+#    #+#             */
-/*   Updated: 2024/01/17 18:49:26 by micabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:11:41 by micabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void	confirm_signal(int signal)
 {
 	if (signal == SIGUSR2)
 		ft_printf("signal received\n");
-	else
-		printf("signal not received\n");
 }
 
 void	send_bits(int pid, char i)

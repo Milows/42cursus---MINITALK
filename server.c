@@ -6,7 +6,7 @@
 /*   By: micabrer <micabrer@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:17:59 by micabrer          #+#    #+#             */
-/*   Updated: 2024/01/17 15:46:34 by micabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:11:48 by micabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	signal_handler(int signal)
 
 int	main(int argc, char **argv)
 {
-	pid_t				pid;
+	int	pid;
 
 	(void)argv;
 	if (argc != 1)
 	{
 		ft_printf("Try: ./server\n");
-		return (0);
+		exit(EXIT_FAILURE);
 	}
 	pid = getpid();
 	ft_printf("PID -> %d\n", pid);

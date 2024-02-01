@@ -14,7 +14,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		ar rcs $(NAME) $(OBJS)
-		echo "$(NAME) Creada"
 
 %.o: %.c 
 		$(CC) $(GFLAGS) -c $< -o $@
@@ -24,7 +23,6 @@ clean:
 
 fclean: clean
 		@rm -f $(NAME)
-		@echo "$(NAME) eliminado"
 
 re: fclean all
 
